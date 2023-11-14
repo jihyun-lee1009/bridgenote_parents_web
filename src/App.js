@@ -7,10 +7,14 @@ import ParentJoin from './components/Join/ParentJoin';
 import ParentSetPasswd from './components/Join/ParentSetPasswd';
 import ParentFinish from './components/Join/ParentFinish';
 import ParentFindPasswd from './components/ParentFindPasswd';
-import Login from './components/login/Login';
-import MyPage from './components/login/MainPage';
+import PrivateRoute from './components/login/PrivateRoute';
+import Home from './components/Home';
+import SignIn from './components/login/SignIn';
+import Login from './components/Login';
+import Terms from './components/Terms';
 
 function App() {
+  const token = sessionStorage.getItem("Authorization");
 
   return (
     <RecoilRoot>
@@ -20,7 +24,10 @@ function App() {
             {/* 학부모용 */}
             <Route path='/' element={<Main />} />
             <Route path='/parent/login' element={<Login />} />
-            <Route path='/parent/home' element={<MyPage />} />
+            <Route path='parent/home' element={<Home />} />
+            <Route path='parent/terms' element={<Terms />} />
+
+            {/* <Route path='parent/home' element={<PrivateRoute component={<Home />} authenticated={token} />} /> */}
             <Route element={<Layout />}>
               <Route path='/parent/join' element={<ParentJoin />} />
               <Route path='/parent/join/password' element={<ParentSetPasswd />} />
